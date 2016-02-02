@@ -1,0 +1,183 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=letterpaper, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+%\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{Digital Signal Processing} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Problem Set 1 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{John McCormack} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+\section{Problem 1}
+
+\subsection{Part a}
+	If the highest frequency we need is 100 Hz, then we need a Nyquist Frequency
+	greater than 200 Hz in order to properly sample it.
+
+\subsection{Part b}
+	If we are sampling a signal at 250 samples/s, then we can sample 
+	up to 125 Hz and still have a unique sginal. 
+
+\section{Problem 2}
+
+Given the two equations:
+
+\begin{align} 
+\begin{split}
+	x_{a}(t)	&= sin(480 \pi t) + 3sin(720 \pi t) \\
+	x_{b}(t)	&= 3cos(600 \pi t) + 2cos(1800 \pi t)\\
+\end{split}					
+\end{align}
+
+\subsection{Part a}
+	The Nyquist Sampling frequency will be based off of the higher of the two frequencies. 
+	Therefore, in part a the nyquist frequency is:
+	\begin{align}
+	\begin{split}
+		x_{a}(t)	&= 3sin(720 \pi t)\\
+		highest \: frequency  &= 360 \: Hz\\
+		Nyquist \: frequency &= 720 \: samples/second\\
+	\end{split}
+	\end{align}
+
+	And in equation b:
+	\begin{align}
+	\begin{split}
+		x_{b}(t)	&= 2cos(1800 \pi t)\\
+		highest \:  frequency &= 900 \: Hz\\
+		Nyquist \:  frequency &= 1800 \: samples/second
+	\end{split}
+	\end{align}
+
+\subsection{Part b}
+	If the sampled signals are passes through an ideal D/A converter, the reconstructed
+	signals would appear as below:
+
+	\begin{align}
+	\begin{split}
+		x_{a}(t)	&= sin(480 \pi t) + 3sin(720 \pi t)\\
+		t &= \frac{n}{Fs} \\
+		Fs &= 600 \\
+		x_{a}(n) &= sin(480 \pi \frac{n}{600}) + 3sin(720 \pi \frac{n}{600}) \\
+		x_{a}(n) &= sin(\frac{4}{5} \pi n) + 3sin(\frac{6}{5} \pi n) \\
+		x_{a}(n) &= sin(2 \pi n \frac{2}{5}) + 3sin(2 \pi n \frac{3}{5}) \\
+		x_{a}(n) &= sin(2 \pi n \frac{2}{5}) + 3sin(2 \pi n (1 - \frac{2}{5})) \\
+		x_{a}(n) &= sin(2 \pi n \frac{2}{5}) - 3 sin(2 \pi n \frac{2}{5}) \\
+		Recover \: Signals \\
+		y_{a}(t) &= -2sin(2 \pi t \frac{2}{5} * 600)\\
+		y_{a}(t) &= -2sin(2 \pi 240 t)) \\
+	\end{split}
+	\end{align}
+
+	The two sinewaves appear as one signal due to aliasing in the second part of the signal. 
+
+	For the Other Signal:
+	\begin{align}
+	\begin{split}
+		x_{b}(t)	&= 3cos(600 \pi t) + 2cos(1800 \pi t) \\
+		t &= \frac{n}{Fs} \\
+		Fs &= 10,000 \\
+		x_{b}(n) &= 3 cos(600 \pi \frac{n}{10000}) + 2cos(1800 \pi \frac{n}{10000}) \\
+		x_{b}(n) &= 3 cos(\pi n \frac{3}{50}) + 2 cos(\pi n \frac{9}{50}) \\
+		Recover \: Signals \\
+		y_{b}(t) &= 3 cos(\pi t 600) + 2 cos(\pi t 1800) \\
+	\end{split}
+	\end{align}
+
+	The two parts of the signal are recovered successfully
+
+\section{Part 3}
+
+If we have a signal:
+	\begin{align}
+		\begin{split}
+			x(t) = cos(4000 \pi t) \\
+		\end{split}
+	\end{align}
+
+	That was sampled to produce 
+
+	\begin{align}
+		\begin{split}
+			x(n) = cos(n\pi / 2) \\
+		\end{split}
+	\end{align}
+
+	Then the sampling rate, measured in Hz is:
+
+	\begin{align}
+		\begin{split}
+			t &= \frac{n}{Fs} \\
+			cos(4000 \pi t) &= cos(n \pi /2) \\
+			cos(4000 \pi \frac{n}{Fs}) &= cos(n \pi /2) \\
+			4000 \pi \frac{n}{Fs} &= \frac{n \pi}{2} \\
+			\frac{4000}{Fs} &= \frac{1}{2} \\
+			Fs &= 8000 \: Hz \\
+		\end{split}
+	\end{align}
+
+\end{document}
