@@ -99,7 +99,7 @@ void i2c_write(uint8_t address, uint8_t *buffer, int buff_len) {
 	i2c_tx(address);
 	LPC_I2C0->CONCLR = 0x28; //Clear SI and start flag
 	
-	while(state != 0x18){    //Wait until the addres has been recived	
+ 	while(state != 0x18){    //Wait until the addres has been recived	
 	state = LPC_I2C0->STAT;
 	}	
 

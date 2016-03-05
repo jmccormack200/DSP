@@ -1,5 +1,5 @@
 Dependencies for Project 'DSP_LiB', Target 'LPC4088': (DO NOT MODIFY !)
-F (.\src\loop_intr.c)(0x53D918C0)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\loop_intr.o --omf_browse .\obj\loop_intr.crf --depend .\obj\loop_intr.d)
+F (.\src\loop_intr.c)(0x56DB251E)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\loop_intr.o --omf_browse .\obj\loop_intr.crf --depend .\obj\loop_intr.d)
 I (.\drivers\audio.h)(0x53CE703C)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h)(0x53A03D92)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x56265FCC)
@@ -18,7 +18,7 @@ I (.\drivers\platform.h)(0x53D7B84A)
 I (.\drivers\i2c.h)(0x53E1E552)
 I (.\drivers\i2s.h)(0x53CE325A)
 I (.\drivers\dma.h)(0x53D6717E)
-F (.\drivers\audio.c)(0x53EB7BDE)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\audio.o --omf_browse .\obj\audio.crf --depend .\obj\audio.d)
+F (.\drivers\audio.c)(0x56DB2515)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\audio.o --omf_browse .\obj\audio.crf --depend .\obj\audio.d)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h)(0x53A03D92)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x56265FCC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x569EA10A)
@@ -65,7 +65,7 @@ I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h)(0x56264C10)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\system_LPC407x_8x_177x_8x.h)(0x4FF1B02A)
 I (drivers\platform.h)(0x53D7B84A)
 I (drivers\gpio.h)(0x53D0BFD2)
-F (.\drivers\i2c.c)(0x53EB8156)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\i2c.o --omf_browse .\obj\i2c.crf --depend .\obj\i2c.d)
+F (.\drivers\i2c.c)(0x56DB1C89)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\i2c.o --omf_browse .\obj\i2c.crf --depend .\obj\i2c.d)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h)(0x53A03D92)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x56265FCC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x569EA10A)
@@ -89,6 +89,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\system_LPC407x_8x_1
 I (drivers\platform.h)(0x53D7B84A)
 I (drivers\i2s.h)(0x53CE325A)
 F (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib)(0x5628E830)()
+F (RTE\Device\LPC4088FET208\RTE_Device.h)(0x568E97B8)()
 F (RTE\Device\LPC4088FET208\startup_LPC407x_8x_177x_8x.s)(0x4FB9E3FE)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include--pd "__UVISION_VERSION SETA 518" --pd "_RTE_ SETA 1" --pd "CORE_M4 SETA 1"--list .\lst\startup_lpc407x_8x_177x_8x.lst --xref -o .\obj\startup_lpc407x_8x_177x_8x.o --depend .\obj\startup_lpc407x_8x_177x_8x.d)
 F (RTE\Device\LPC4088FET208\system_LPC407x_8x_177x_8x.c)(0x4FF15BCA)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE-I C:\Users\John\Projects\DSP_Course\Lab1\LAB_1\LAB_1\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\system_lpc407x_8x_177x_8x.o --omf_browse .\obj\system_lpc407x_8x_177x_8x.crf --depend .\obj\system_lpc407x_8x_177x_8x.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x569EA10A)
@@ -99,4 +100,3 @@ I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h)(0x56264C10)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h)(0x56264C10)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h)(0x56264C10)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\system_LPC407x_8x_177x_8x.h)(0x4FF1B02A)
-F (RTE\Device\LPC4088FET208\RTE_Device.h)(0x568E97B8)()
