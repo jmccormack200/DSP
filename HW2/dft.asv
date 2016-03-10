@@ -1,0 +1,16 @@
+%% Discrete Fourier Transform (DFT)
+
+%% Part A: Basic Signals
+%  Problem 1:
+%  We will generate and plot a short sequence
+%
+
+n = 0:63;
+x = (0.95).^n .* cos(pi/20 .* n); 
+
+stem(n,x);
+
+% Problem 2:
+% Matlab Ramp Function
+
+

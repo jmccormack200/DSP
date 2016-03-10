@@ -1,0 +1,14 @@
+function [output_signal] = fDFT(input_signal)
+%UNTITLED5 Summary of this function goes here
+%   Detailed explanation goes here
+    num_points = length(input_signal);
+    for in_point = 0:num_points
+       value = 0;
+       for out_point = 0:num_points -0
+    end
+    
+
+    output_signal = input_signal;
+
+end
+
