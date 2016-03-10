@@ -3,11 +3,12 @@ function [ output ] = stem_DFT( input_signal )
 %   Detailed explanation goes here
     ffted = fft(input_signal);
     
+ 
     subplot(1,2,1);
-    plot(abs(ffted));
+    stem(abs(ffted));
     
     subplot(1,2,2);
-    plot(angle(ffted));
+    stem(angle(ffted));
 
 end
 

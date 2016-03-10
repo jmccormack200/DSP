@@ -3,7 +3,7 @@ function [output_signal] = fDFT(input_signal)
 %   Detailed explanation goes here
     % Preallocating Storage For Output due to Matlab suggestion
     num_points = length(input_signal);
-    output_signal = zeroes(num_points);
+    output_signal = zeroes(1,num_points);
     
     for a = 0:num_points - 1
        value = 0;
