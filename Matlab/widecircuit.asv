@@ -10,8 +10,8 @@ chanR = fourier(:,2);
 phaseL = unwrap(angle(chanL) + pi);
 phaseR = unwrap(angle(chanR) + pi);
 
-magL = abs(chanL)*0.90;
-magR = abs(chanR)*0.90;
+magL = abs(chanL);
+magR = abs(chanR)*0.8;
 
 [rL, cL] = pol2cart(phaseL, magL);
 [rR, cR] = pol2cart(phaseR, magR);
