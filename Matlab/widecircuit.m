@@ -1,6 +1,6 @@
 file = 'C:\Users\johnmccormack2307\Downloads\Inspired.wav';
 
-[y, FS] = audioread(file);
+[y, FS] = audioread(file, [0:100]);
 
 fourier = fft(y);
 
@@ -18,6 +18,12 @@ magR = abs(chanR)*0.8;
 
 midL = rL + cL * 1j;
 midR = rR + cR * 1j;
+
+finalL = chanL + midR;
+finalR = chanR + midL;
+
+newFourier = cat(1, finalL, finalR);
+
 
 
 
