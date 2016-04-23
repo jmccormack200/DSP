@@ -18,3 +18,4 @@
 .\obj\loop_dma.o: .\drivers\i2c.h
 .\obj\loop_dma.o: .\drivers\i2s.h
 .\obj\loop_dma.o: .\drivers\dma.h
+.\obj\loop_dma.o: src\fft.h

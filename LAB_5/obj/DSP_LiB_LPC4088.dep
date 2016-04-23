@@ -1,5 +1,5 @@
 Dependencies for Project 'DSP_LiB', Target 'LPC4088': (DO NOT MODIFY !)
-F (.\src\loop_dma.c)(0x5710134F)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\LAB_5\RTE-I C:\Users\John\Projects\DSP_Course\LAB_5\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\loop_dma.o --omf_browse .\obj\loop_dma.crf --depend .\obj\loop_dma.d)
+F (.\src\loop_dma.c)(0x571BE7A7)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\LAB_5\RTE-I C:\Users\John\Projects\DSP_Course\LAB_5\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\loop_dma.o --omf_browse .\obj\loop_dma.crf --depend .\obj\loop_dma.d)
 I (.\drivers\audio.h)(0x57100A91)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h)(0x53A04BA2)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x56266DDC)
@@ -18,6 +18,7 @@ I (.\drivers\platform.h)(0x57100A91)
 I (.\drivers\i2c.h)(0x57100A91)
 I (.\drivers\i2s.h)(0x57100A91)
 I (.\drivers\dma.h)(0x57100A91)
+I (src\fft.h)(0x57100A91)
 F (.\drivers\audio.c)(0x57100A91)(-c --cpu Cortex-M4.fp -D__EVAL -g -O3 --apcs=interwork -I .\drivers-I C:\Users\John\Projects\DSP_Course\LAB_5\RTE-I C:\Users\John\Projects\DSP_Course\LAB_5\RTE\Device\LPC4088FET208-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DCORE_M4-o .\obj\audio.o --omf_browse .\obj\audio.crf --depend .\obj\audio.d)
 I (C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h)(0x53A04BA2)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h)(0x56266DDC)

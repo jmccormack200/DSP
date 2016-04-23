@@ -17,7 +17,10 @@ typedef struct
 #include "fft.h"
 
 COMPLEX twiddle[N];
-COMPLEX cbuf[N];
+COMPLEX cbufL[N];
+COMPLEX cbufR[N];
+COMPLEX cbufLcross[N];
+COMPLEX cbufRcross[N];
 int16_t sinebuf[N];
 int16_t outbuffer[N];
 
@@ -71,6 +74,7 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
  int i;
 
   int16_t audio_chL;
+	int16_t audio_chR;
   uint32_t *txbuf, *rxbuf;
 
   if(tx_proc_buffer == PING) txbuf = dma_tx_buffer_ping; 
@@ -82,22 +86,66 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
   {
 	audio_IN =   rxbuf[i];	
 	audio_chL = (uint16_t)(audio_IN & 0x0000FFFF); 
-    cbuf[i].real = (float)audio_chL; //*hamming[i];
-    cbuf[i].imag = 0.0f;
+    cbufL[i].real = (float)audio_chL; //*hamming[i];
+    cbufL[i].imag = 0.0f;
     sinebuf[i] = audio_chL;
+		
+	audio_chR = (uint16_t)((audio_IN & 0xFFFF0000) >> 16);
+		cbufR[i].real = (float)audio_chR; //*hamming[i];
+    cbufR[i].imag = 0.0f;
+		
+		//txbuf[i] = rxbuf[i];
+		
   }
 	
-   fft(cbuf,DMA_BUFFER_SIZE,twiddle);
+	
+	
+	fft(cbufL,DMA_BUFFER_SIZE,twiddle);
+	fft(cbufR, DMA_BUFFER_SIZE, twiddle);
+	fft(cbufL, DMA_BUFFER_SIZE, twiddle);
+	fft(cbufR, DMA_BUFFER_SIZE, twiddle);
 
+	//process data here
+	
+	/*
   for(i=0; i<DMA_BUFFER_SIZE ; i++)
   {
+		int magL = (int16_t)((sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )))/MAGNITUDE_SCALING_FACTOR);
+		int magR = (int16_t)((sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )))/MAGNITUDE_SCALING_FACTOR);
 		
-		audio_chL = (int16_t)((sqrt(cbuf[i].real * cbuf[i].real + (cbuf[i].imag * cbuf[i].imag )))/MAGNITUDE_SCALING_FACTOR);
+		float phaseL = (float)atan2(cbufL[i].imag, cbufL[i].real) + 3.14159;
+		float phaseR = (float)atan2(cbufR[i].imag, cbufR[i].real) + 3.14159;
+		
+		cbufLcross[i].real = magL * cos(phaseL);
+		cbufLcross[i].imag = magL * sin(phaseL);
+		cbufRcross[i].real = magR * cos(phaseR);
+		cbufRcross[i].imag = magR * sin(phaseR);
+		
+		cbufL[i].real = cbufL[i].real - cbufRcross[i].real;
+		cbufL[i].imag = cbufL[i].imag - cbufRcross[i].imag;
+		
+		cbufR[i].real = cbufR[i].real - cbufLcross[i].real;
+		cbufR[i].imag = cbufR[i].imag - cbufLcross[i].imag;		
+	}
+	*/
 	
-    if (i==0) {audio_chL = TRIGGER;}
-   		
-  	txbuf[i]= ((sinebuf[i])<<16 & 0xFFFF0000) + (-(audio_chL) & 0x0000FFFF);	
+	//fft(cbufL, DMA_BUFFER_SIZE, twiddle);
+	//fft(cbufR, DMA_BUFFER_SIZE, twiddle);
+	
+	for(i=0; i<DMA_BUFFER_SIZE; i++)
+	{
+				
+		//audio_chL = (int16_t)((sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )))/MAGNITUDE_SCALING_FACTOR);
+		//audio_chR = (int16_t)((sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )))/MAGNITUDE_SCALING_FACTOR);
+	
+		audio_chL = (int16_t)(cbufL[i].real);
+		audio_chR = (int16_t)(cbufR[i].real);
+		
+    //if (i==0) {audio_chL = TRIGGER;}
+		
+		txbuf[i]= (-(audio_chR<<16 & 0xFFFF0000) + (-(audio_chL) & 0x0000FFFF));	
   }
+
 	tx_buffer_empty = 0;
   rx_buffer_full = 0;
 	}
