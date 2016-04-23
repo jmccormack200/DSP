@@ -94,7 +94,7 @@ void i2c_write(uint8_t address, uint8_t *buffer, int buff_len) {
   i2c_start();
 	while(state != 0x08){    //Wait until the start signal have been recived
 
-	state = LPC_I2C0->STAT ;
+	state = LPC_I2C0->STAT ; 		
 	}
 	i2c_tx(address);
 	LPC_I2C0->CONCLR = 0x28; //Clear SI and start flag

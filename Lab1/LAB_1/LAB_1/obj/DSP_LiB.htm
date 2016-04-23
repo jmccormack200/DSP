@@ -3,16 +3,16 @@
 <title>Static Call Graph - [.\obj\DSP_LiB.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\DSP_LiB.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Sat Mar 05 13:28:16 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Thu Apr 07 18:09:33 2016
 <BR><P>
-<H3>Maximum Stack Usage =         28 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         88 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-SystemInit &rArr; SystemCoreClockUpdate
+__rt_entry_main &rArr; main &rArr; audio_init &rArr; Codec_WriteRegister &rArr; i2c_write &rArr; delay_ms
 <P>
 <H3>
 Functions with no stack information
 </H3><UL>
- <LI><a href="#[68]">__user_initial_stackheap</a>
+ <LI><a href="#[50]">__user_initial_stackheap</a>
 </UL>
 </UL>
 <P>
@@ -51,6 +51,7 @@ Function Pointers
  <LI><a href="#[16]">I2C0_IRQHandler</a> from startup_lpc407x_8x_177x_8x.o(.text) referenced from startup_lpc407x_8x_177x_8x.o(RESET)
  <LI><a href="#[17]">I2C1_IRQHandler</a> from startup_lpc407x_8x_177x_8x.o(.text) referenced from startup_lpc407x_8x_177x_8x.o(RESET)
  <LI><a href="#[18]">I2C2_IRQHandler</a> from startup_lpc407x_8x_177x_8x.o(.text) referenced from startup_lpc407x_8x_177x_8x.o(RESET)
+ <LI><a href="#[48]">I2S_HANDLER</a> from loop_intr.o(.text) referenced from loop_intr.o(.text)
  <LI><a href="#[26]">I2S_IRQHandler</a> from i2s.o(.text) referenced from startup_lpc407x_8x_177x_8x.o(RESET)
  <LI><a href="#[30]">LCD_IRQHandler</a> from startup_lpc407x_8x_177x_8x.o(.text) referenced from startup_lpc407x_8x_177x_8x.o(RESET)
  <LI><a href="#[28]">MCI_IRQHandler</a> from startup_lpc407x_8x_177x_8x.o(.text) referenced from startup_lpc407x_8x_177x_8x.o(RESET)
@@ -91,8 +92,8 @@ Function Pointers
 Global Symbols
 </H3>
 <P><STRONG><a name="[36]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
-<BR><BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<BR><BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
 <P><STRONG><a name="[37]"></a>__scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
@@ -103,9 +104,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[69]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[6c]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[6a]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<P><STRONG><a name="[6d]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[3a]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
@@ -113,7 +114,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
-<P><STRONG><a name="[6b]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
+<P><STRONG><a name="[6e]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
 <P><STRONG><a name="[40]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
@@ -123,70 +124,70 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_init
 </UL>
 
-<P><STRONG><a name="[6c]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
+<P><STRONG><a name="[6f]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002E))
 
-<P><STRONG><a name="[6d]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
+<P><STRONG><a name="[70]"></a>__rt_lib_init_argv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
 
-<P><STRONG><a name="[6e]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
+<P><STRONG><a name="[71]"></a>__rt_lib_init_atexit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
-<P><STRONG><a name="[6f]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
+<P><STRONG><a name="[72]"></a>__rt_lib_init_clock_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000021))
 
-<P><STRONG><a name="[70]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
+<P><STRONG><a name="[73]"></a>__rt_lib_init_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000032))
 
-<P><STRONG><a name="[71]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
+<P><STRONG><a name="[74]"></a>__rt_lib_init_exceptions_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000030))
 
-<P><STRONG><a name="[72]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
+<P><STRONG><a name="[75]"></a>__rt_lib_init_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001F))
 
-<P><STRONG><a name="[73]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
+<P><STRONG><a name="[76]"></a>__rt_lib_init_getenv_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000023))
 
-<P><STRONG><a name="[74]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
+<P><STRONG><a name="[77]"></a>__rt_lib_init_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
 
-<P><STRONG><a name="[75]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
+<P><STRONG><a name="[78]"></a>__rt_lib_init_lc_collate_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000011))
 
-<P><STRONG><a name="[76]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
+<P><STRONG><a name="[79]"></a>__rt_lib_init_lc_ctype_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000013))
 
-<P><STRONG><a name="[77]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
+<P><STRONG><a name="[7a]"></a>__rt_lib_init_lc_monetary_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000015))
 
-<P><STRONG><a name="[78]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
+<P><STRONG><a name="[7b]"></a>__rt_lib_init_lc_numeric_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000017))
 
-<P><STRONG><a name="[79]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
+<P><STRONG><a name="[7c]"></a>__rt_lib_init_lc_time_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000019))
 
-<P><STRONG><a name="[7a]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
+<P><STRONG><a name="[7d]"></a>__rt_lib_init_preinit_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000004))
 
-<P><STRONG><a name="[7b]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
+<P><STRONG><a name="[7e]"></a>__rt_lib_init_rand_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000E))
 
-<P><STRONG><a name="[7c]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
+<P><STRONG><a name="[7f]"></a>__rt_lib_init_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000033))
 
-<P><STRONG><a name="[7d]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
+<P><STRONG><a name="[80]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001D))
 
-<P><STRONG><a name="[7e]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
+<P><STRONG><a name="[81]"></a>__rt_lib_init_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000025))
 
-<P><STRONG><a name="[7f]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
+<P><STRONG><a name="[82]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000C))
 
 <P><STRONG><a name="[45]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
-<P><STRONG><a name="[80]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
+<P><STRONG><a name="[83]"></a>__rt_lib_shutdown_cpp_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000002))
 
-<P><STRONG><a name="[81]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
+<P><STRONG><a name="[84]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000007))
 
-<P><STRONG><a name="[82]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
+<P><STRONG><a name="[85]"></a>__rt_lib_shutdown_heap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F))
 
-<P><STRONG><a name="[83]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
+<P><STRONG><a name="[86]"></a>__rt_lib_shutdown_return</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000010))
 
-<P><STRONG><a name="[84]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
+<P><STRONG><a name="[87]"></a>__rt_lib_shutdown_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A))
 
-<P><STRONG><a name="[85]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
+<P><STRONG><a name="[88]"></a>__rt_lib_shutdown_stdio_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000004))
 
-<P><STRONG><a name="[86]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
+<P><STRONG><a name="[89]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C))
 
 <P><STRONG><a name="[38]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry.o(.ARM.Collect$$rtentry$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
 </UL>
 
-<P><STRONG><a name="[87]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
+<P><STRONG><a name="[8a]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
 <P><STRONG><a name="[3d]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -199,19 +200,19 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
-<P><STRONG><a name="[88]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
+<P><STRONG><a name="[8b]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[41]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; init_LED &rArr; gpio_set_mode
+<BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; audio_init &rArr; Codec_WriteRegister &rArr; i2c_write &rArr; delay_ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[89]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
+<P><STRONG><a name="[8c]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
-<P><STRONG><a name="[50]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
+<P><STRONG><a name="[6b]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
@@ -219,245 +220,46 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
-<P><STRONG><a name="[8a]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
+<P><STRONG><a name="[8d]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
 <P><STRONG><a name="[46]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[4a]"></a>delay_cycles</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, delay.o(.emb_text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<P><STRONG><a name="[4d]"></a>delay_cycles</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, delay.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 
-<P><STRONG><a name="[42]"></a>main</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, loop_intr.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = main &rArr; init_LED &rArr; gpio_set_mode
+<P><STRONG><a name="[48]"></a>I2S_HANDLER</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, loop_intr.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2S_HANDLER
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_LED
+<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
+<BR>[Address Reference Count : 1]<UL><LI> loop_intr.o(.text)
 </UL>
-
-<P><STRONG><a name="[49]"></a>delay_ms</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, delay.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_cycles
+<P><STRONG><a name="[42]"></a>main</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, loop_intr.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = main &rArr; audio_init &rArr; Codec_WriteRegister &rArr; i2c_write &rArr; delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Codec_WriteRegister
-</UL>
-
-<P><STRONG><a name="[4b]"></a>delay_us</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, delay.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_cycles
-</UL>
-
-<P><STRONG><a name="[4d]"></a>gpio_get</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_toggle
-</UL>
-
-<P><STRONG><a name="[4c]"></a>gpio_toggle</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, gpio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_get
-</UL>
-
-<P><STRONG><a name="[4f]"></a>gpio_set</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set_mode
-</UL>
-
-<P><STRONG><a name="[8b]"></a>gpio_set_range</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[4e]"></a>gpio_set_mode</STRONG> (Thumb, 122 bytes, Stack size 8 bytes, gpio.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = gpio_set_mode
-</UL>
-<BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
-</UL>
-<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_LED
-</UL>
-
-<P><STRONG><a name="[8c]"></a>gpio_set_trigger</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[8d]"></a>gpio_set_callback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[8e]"></a>port_isr</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[8f]"></a>port_isr0</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[90]"></a>port_isr1</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[91]"></a>port_isr2</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[92]"></a>port_isr3</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[93]"></a>port_isr4</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
-
-<P><STRONG><a name="[94]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
-
-<P><STRONG><a name="[95]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
-
-<P><STRONG><a name="[96]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
-
-<P><STRONG><a name="[43]"></a>exit</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, exit.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
-<LI>Call Chain = exit
-</UL>
-<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
+<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[48]"></a>init_LED</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, audio.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = init_LED &rArr; gpio_set_mode
+<P><STRONG><a name="[4c]"></a>delay_ms</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, delay.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = delay_ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set_mode
+<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_cycles
 </UL>
-<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[97]"></a>prbs</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, audio.o(.text), UNUSED)
-
-<P><STRONG><a name="[51]"></a>Codec_WriteRegister</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, audio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-</UL>
-<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+<BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Codec_WriteRegister
 </UL>
 
-<P><STRONG><a name="[53]"></a>audio_init</STRONG> (Thumb, 276 bytes, Stack size 48 bytes, audio.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_irq_enable
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_dma1_enable
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_depth_irq
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_depth_dma1
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_start
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_set_callback
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_irq_enable
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_dma2_enable
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_depth_irq
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_depth_dma2
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_init
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_init
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_setup
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_set_callback
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_init
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_enable
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Codec_WriteRegister
+<P><STRONG><a name="[4e]"></a>delay_us</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, delay.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_cycles
 </UL>
 
-<P><STRONG><a name="[98]"></a>dma_state</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-
-<P><STRONG><a name="[99]"></a>dma_clean</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-
-<P><STRONG><a name="[9a]"></a>dma_src_memory</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-
-<P><STRONG><a name="[9b]"></a>dma_dest_memory</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-
-<P><STRONG><a name="[9c]"></a>dma_transfersize</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-
-<P><STRONG><a name="[5c]"></a>dma_init</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[5d]"></a>dma_setup</STRONG> (Thumb, 362 bytes, Stack size 36 bytes, dma.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[5e]"></a>dma_enable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[9d]"></a>dma_disable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-
-<P><STRONG><a name="[5f]"></a>dma_set_callback</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[25]"></a>DMA_IRQHandler</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dma.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(RESET)
-</UL>
-<P><STRONG><a name="[9e]"></a>i2c_enable</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-
-<P><STRONG><a name="[9f]"></a>i2c_start</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-
-<P><STRONG><a name="[64]"></a>i2c_stop</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write
-</UL>
-
-<P><STRONG><a name="[a0]"></a>i2c_tx</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-
-<P><STRONG><a name="[a1]"></a>i2c_rx</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-
-<P><STRONG><a name="[a2]"></a>i2c_ack</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-
-<P><STRONG><a name="[54]"></a>i2c_init</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[52]"></a>i2c_write</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, i2c.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_stop
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-</UL>
-<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Codec_WriteRegister
-</UL>
-
-<P><STRONG><a name="[a3]"></a>i2c_read</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
-
-<P><STRONG><a name="[55]"></a>i2s_init</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[59]"></a>i2s_rx_irq_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[58]"></a>i2s_tx_irq_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[57]"></a>i2s_rx_depth_irq</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[56]"></a>i2s_tx_depth_irq</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[a4]"></a>i2s_rx_dma1_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[63]"></a>i2s_tx_dma1_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[a5]"></a>i2s_rx_depth_dma1</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[61]"></a>i2s_tx_depth_dma1</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[62]"></a>i2s_rx_dma2_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[a6]"></a>i2s_tx_dma2_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[60]"></a>i2s_rx_depth_dma2</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[a7]"></a>i2s_tx_depth_dma2</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[5a]"></a>i2s_start</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[a8]"></a>i2s_stop</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[a9]"></a>i2s_rx</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[aa]"></a>i2s_tx</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-
-<P><STRONG><a name="[5b]"></a>i2s_set_callback</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
-</UL>
-
-<P><STRONG><a name="[26]"></a>I2S_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(RESET)
-</UL>
 <P><STRONG><a name="[2]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_lpc407x_8x_177x_8x.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(RESET)
 </UL>
@@ -642,17 +444,235 @@ Global Symbols
 <P><STRONG><a name="[c]"></a>WDT_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc407x_8x_177x_8x.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(RESET)
 </UL>
-<P><STRONG><a name="[68]"></a>__user_initial_stackheap</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup_lpc407x_8x_177x_8x.o(.text))
+<P><STRONG><a name="[50]"></a>__user_initial_stackheap</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup_lpc407x_8x_177x_8x.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[66]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 306 bytes, Stack size 20 bytes, system_lpc407x_8x_177x_8x.o(.text))
+<P><STRONG><a name="[8e]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[8f]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[90]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[3e]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
+<LI>Call Chain = __user_setup_stackheap
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+</UL>
+<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
+</UL>
+
+<P><STRONG><a name="[51]"></a>init_LED</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, audio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set_mode
+</UL>
+
+<P><STRONG><a name="[91]"></a>prbs</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, audio.o(.text), UNUSED)
+
+<P><STRONG><a name="[53]"></a>Codec_WriteRegister</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, audio.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Codec_WriteRegister &rArr; i2c_write &rArr; delay_ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[4b]"></a>audio_init</STRONG> (Thumb, 276 bytes, Stack size 48 bytes, audio.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = audio_init &rArr; Codec_WriteRegister &rArr; i2c_write &rArr; delay_ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_irq_enable
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_dma1_enable
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_depth_irq
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_tx_depth_dma1
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_start
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_set_callback
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_irq_enable
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_dma2_enable
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_depth_irq
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_rx_depth_dma2
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2s_init
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_init
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_setup
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_set_callback
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_init
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dma_enable
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Codec_WriteRegister
+</UL>
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[92]"></a>dma_state</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
+
+<P><STRONG><a name="[93]"></a>dma_clean</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
+
+<P><STRONG><a name="[94]"></a>dma_src_memory</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
+
+<P><STRONG><a name="[95]"></a>dma_dest_memory</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
+
+<P><STRONG><a name="[96]"></a>dma_transfersize</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
+
+<P><STRONG><a name="[5d]"></a>dma_init</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, dma.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[5e]"></a>dma_setup</STRONG> (Thumb, 362 bytes, Stack size 36 bytes, dma.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = dma_setup
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[5f]"></a>dma_enable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, dma.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[97]"></a>dma_disable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, dma.o(.text), UNUSED)
+
+<P><STRONG><a name="[60]"></a>dma_set_callback</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, dma.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[25]"></a>DMA_IRQHandler</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dma.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(RESET)
+</UL>
+<P><STRONG><a name="[66]"></a>gpio_get</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_toggle
+</UL>
+
+<P><STRONG><a name="[65]"></a>gpio_toggle</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_get
+</UL>
+
+<P><STRONG><a name="[67]"></a>gpio_set</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set_mode
+</UL>
+
+<P><STRONG><a name="[98]"></a>gpio_set_range</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[52]"></a>gpio_set_mode</STRONG> (Thumb, 122 bytes, Stack size 8 bytes, gpio.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
+</UL>
+<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_LED
+</UL>
+
+<P><STRONG><a name="[99]"></a>gpio_set_trigger</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[9a]"></a>gpio_set_callback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[9b]"></a>port_isr</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[9c]"></a>port_isr0</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[9d]"></a>port_isr1</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[9e]"></a>port_isr2</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[9f]"></a>port_isr3</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[a0]"></a>port_isr4</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, gpio.o(.text), UNUSED)
+
+<P><STRONG><a name="[a1]"></a>i2c_enable</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
+
+<P><STRONG><a name="[a2]"></a>i2c_start</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
+
+<P><STRONG><a name="[68]"></a>i2c_stop</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write
+</UL>
+
+<P><STRONG><a name="[a3]"></a>i2c_tx</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
+
+<P><STRONG><a name="[a4]"></a>i2c_rx</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
+
+<P><STRONG><a name="[a5]"></a>i2c_ack</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
+
+<P><STRONG><a name="[55]"></a>i2c_init</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, i2c.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[54]"></a>i2c_write</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, i2c.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = i2c_write &rArr; delay_ms
+</UL>
+<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_stop
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Codec_WriteRegister
+</UL>
+
+<P><STRONG><a name="[a6]"></a>i2c_read</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, i2c.o(.text), UNUSED)
+
+<P><STRONG><a name="[56]"></a>i2s_init</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[5a]"></a>i2s_rx_irq_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[59]"></a>i2s_tx_irq_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[58]"></a>i2s_rx_depth_irq</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[57]"></a>i2s_tx_depth_irq</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[a7]"></a>i2s_rx_dma1_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
+
+<P><STRONG><a name="[64]"></a>i2s_tx_dma1_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[a8]"></a>i2s_rx_depth_dma1</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
+
+<P><STRONG><a name="[62]"></a>i2s_tx_depth_dma1</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[63]"></a>i2s_rx_dma2_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[a9]"></a>i2s_tx_dma2_enable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
+
+<P><STRONG><a name="[61]"></a>i2s_rx_depth_dma2</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[aa]"></a>i2s_tx_depth_dma2</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
+
+<P><STRONG><a name="[5b]"></a>i2s_start</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[ab]"></a>i2s_stop</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, i2s.o(.text), UNUSED)
+
+<P><STRONG><a name="[49]"></a>i2s_rx</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2S_HANDLER
+</UL>
+
+<P><STRONG><a name="[4a]"></a>i2s_tx</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2S_HANDLER
+</UL>
+
+<P><STRONG><a name="[5c]"></a>i2s_set_callback</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;audio_init
+</UL>
+
+<P><STRONG><a name="[26]"></a>I2S_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2s.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(RESET)
+</UL>
+<P><STRONG><a name="[6a]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 306 bytes, Stack size 20 bytes, system_lpc407x_8x_177x_8x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SystemCoreClockUpdate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[65]"></a>fpu_init</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, system_lpc407x_8x_177x_8x.o(.text))
+<P><STRONG><a name="[69]"></a>fpu_init</STRONG> (Thumb, 46 bytes, Stack size 12 bytes, system_lpc407x_8x_177x_8x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = fpu_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
@@ -661,46 +681,45 @@ Global Symbols
 <P><STRONG><a name="[34]"></a>SystemInit</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, system_lpc407x_8x_177x_8x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SystemCoreClockUpdate
 </UL>
-<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fpu_init
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
+<BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fpu_init
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemCoreClockUpdate
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc407x_8x_177x_8x.o(.text)
 </UL>
-<P><STRONG><a name="[3e]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
+<P><STRONG><a name="[43]"></a>exit</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, exit.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
-<LI>Call Chain = __user_setup_stackheap
+<LI>Call Chain = exit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
+<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[ab]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[ac]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[67]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<P><STRONG><a name="[4f]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[ac]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[ad]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[47]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
 </UL>
 
-<P><STRONG><a name="[ad]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[ae]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[ae]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[af]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[af]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[b0]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[3c]"></a>_fp_init</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, fpinit.o(x$fpl$fpinit))
 <BR><BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_fp_1
 </UL>
 
-<P><STRONG><a name="[b0]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[b1]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
-<P><STRONG><a name="[b1]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[b2]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 <P>
 <H3>
 Local Symbols
