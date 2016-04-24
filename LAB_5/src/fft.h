@@ -1,6 +1,6 @@
 //fft.h complex FFT function taken from Rulph's C31 book
 //this file contains definition of complex dat structure also
-
+#include "math.h"
 //struct cmpx                       //complex data structure used by FFT
 //    {
 //    float real;

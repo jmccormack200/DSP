@@ -2,6 +2,9 @@
 
 #include "audio.h"
 #include "math.h"
+
+#include "hamm128.h"
+
 //#include "hamm128.h"
 #define N (DMA_BUFFER_SIZE)
 
@@ -17,6 +20,7 @@ typedef struct
 #include "fft.h"
 
 COMPLEX twiddle[N];
+COMPLEX itwiddle[N];
 COMPLEX cbufL[N];
 COMPLEX cbufR[N];
 COMPLEX cbufLcross[N];
@@ -86,12 +90,12 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
   {
 	audio_IN =   rxbuf[i];	
 	audio_chL = (uint16_t)(audio_IN & 0x0000FFFF); 
-    cbufL[i].real = (float)audio_chL; //*hamming[i];
+    cbufL[i].real = (float)audio_chL; // hamming[i];
     cbufL[i].imag = 0.0f;
     sinebuf[i] = audio_chL;
 		
 	audio_chR = (uint16_t)((audio_IN & 0xFFFF0000) >> 16);
-		cbufR[i].real = (float)audio_chR; //*hamming[i];
+		cbufR[i].real = (float)audio_chR; // hamming[i];
     cbufR[i].imag = 0.0f;
 		
 		//txbuf[i] = rxbuf[i];
@@ -100,16 +104,16 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 	
 	
 	
-	fft(cbufL,DMA_BUFFER_SIZE,twiddle);
-	fft(cbufR, DMA_BUFFER_SIZE, twiddle);
 	fft(cbufL, DMA_BUFFER_SIZE, twiddle);
 	fft(cbufR, DMA_BUFFER_SIZE, twiddle);
+	//fft(cbufL, DMA_BUFFER_SIZE, twiddle);
+	//fft(cbufR, DMA_BUFFER_SIZE, twiddle);
 
 	//process data here
 	
-	/*
   for(i=0; i<DMA_BUFFER_SIZE ; i++)
   {
+		/*
 		int magL = (int16_t)((sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )))/MAGNITUDE_SCALING_FACTOR);
 		int magR = (int16_t)((sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )))/MAGNITUDE_SCALING_FACTOR);
 		
@@ -126,17 +130,24 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		
 		cbufR[i].real = cbufR[i].real - cbufLcross[i].real;
 		cbufR[i].imag = cbufR[i].imag - cbufLcross[i].imag;		
+		*/
+		
+		/*
+		cbufL[i].real = cbufL[i].real / DMA_BUFFER_SIZE;
+		cbufL[i].imag = cbufL[i].imag / DMA_BUFFER_SIZE;
+		cbufR[i].real = cbufR[i].real / DMA_BUFFER_SIZE;
+		cbufR[i].imag = cbufR[i].imag / DMA_BUFFER_SIZE;
+		*/
 	}
-	*/
 	
-	//fft(cbufL, DMA_BUFFER_SIZE, twiddle);
-	//fft(cbufR, DMA_BUFFER_SIZE, twiddle);
+	fft(cbufL, DMA_BUFFER_SIZE, itwiddle);
+	fft(cbufR, DMA_BUFFER_SIZE, itwiddle);
 	
 	for(i=0; i<DMA_BUFFER_SIZE; i++)
 	{
 				
-		//audio_chL = (int16_t)((sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )))/MAGNITUDE_SCALING_FACTOR);
-		//audio_chR = (int16_t)((sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )))/MAGNITUDE_SCALING_FACTOR);
+		//audio_chL = (int16_t)(sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag ))); ///MAGNITUDE_SCALING_FACTOR);
+		//audio_chR = (int16_t)(sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag ))); ///MAGNITUDE_SCALING_FACTOR);
 	
 		audio_chL = (int16_t)(cbufL[i].real);
 		audio_chR = (int16_t)(cbufR[i].real);
@@ -158,6 +169,14 @@ int main (void) {    //Main function
     twiddle[n].real = (float32_t) (cos(PI*n/N));
     twiddle[n].imag = (float32_t) (-sin(PI*n/N));
   }	
+	
+	for (n=0 ; n< N ; n++)
+  {
+    itwiddle[n].real = (float32_t) (cos(PI*n/N));
+    itwiddle[n].imag = (float32_t) (sin(PI*n/N));
+  }	
+	
+
 
 	gpio_set_mode(P2_10,Output);
   audio_init ( hz48000, line_in, dma, DMA_HANDLER);
