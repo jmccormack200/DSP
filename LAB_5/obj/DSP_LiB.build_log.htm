@@ -27,31 +27,25 @@ Project File Date:  04/14/2016
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'LPC4088'
+compiling i2s.c...
+compiling i2c.c...
 compiling delay.c...
 compiling dma.c...
-compiling i2s.c...
 compiling gpio.c...
 compiling audio.c...
-compiling i2c.c...
 compiling loop_dma.c...
-src\loop_dma.c(132): warning:  #550-D: variable "magL" was set but never used
+src\loop_dma.c(127): warning:  #550-D: variable "magL" was set but never used
   		float32_t magL;
-src\loop_dma.c(133): warning:  #550-D: variable "phaseL" was set but never used
-  		float32_t phaseL;
-src\loop_dma.c(134): warning:  #550-D: variable "magR" was set but never used
+src\loop_dma.c(129): warning:  #550-D: variable "magR" was set but never used
   		float32_t magR;
-src\loop_dma.c(135): warning:  #177-D: variable "phaseR" was declared but never referenced
-  		float32_t phaseR;
-src\loop_dma.c(139): warning:  #177-D: variable "Rreal" was declared but never referenced
-  		double Rreal = (double)cbufR[i].real;
-src\loop_dma.c(140): warning:  #177-D: variable "Rimag" was declared but never referenced
-  		double Rimag = (double)cbufR[i].imag;
-src\loop_dma.c: 6 warnings, 0 errors
+src\loop_dma.c(130): warning:  #550-D: variable "phaseR" was set but never used
+  		double phaseR;
+src\loop_dma.c: 3 warnings, 0 errors
 assembling startup_LPC407x_8x_177x_8x.s...
 compiling system_LPC407x_8x_177x_8x.c...
 linking...
-Program Size: Code=10668 RO-data=700 RW-data=180 ZI-data=8548  
-".\obj\DSP_LiB.axf" - 0 Error(s), 6 Warning(s).
+Program Size: Code=11044 RO-data=708 RW-data=180 ZI-data=8548  
+".\obj\DSP_LiB.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -83,10 +77,10 @@ Package Vendor: Keil
       Library file:  CMSIS\Lib\ARM\arm_cortexM4lf_math.lib
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   Device\Source\ARM\startup_LPC407x_8x_177x_8x.s
-      Include file:  Device\Include\LPC407x_8x_177x_8x.h
       Source file:   Device\Source\system_LPC407x_8x_177x_8x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Include file:  Device\Include\LPC407x_8x_177x_8x.h
+      Source file:   Device\Source\ARM\startup_LPC407x_8x_177x_8x.s
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

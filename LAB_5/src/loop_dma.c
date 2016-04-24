@@ -1,7 +1,6 @@
 // fft128_dma.c
 
 #include "audio.h"
-#include "math.h"
 
 #include "hamm128.h"
 
@@ -11,6 +10,9 @@
 #define TRIGGER 12000
 #define MAGNITUDE_SCALING_FACTOR 32
 
+#include <math.h>
+#include <stdio.h>
+
 typedef struct
 {
   float32_t real;
@@ -18,6 +20,8 @@ typedef struct
 } COMPLEX;
 
 #include "fft.h"
+
+
 
 COMPLEX twiddle[N];
 COMPLEX itwiddle[N];
@@ -28,20 +32,11 @@ COMPLEX cbufRcross[N];
 int16_t sinebuf[N];
 int16_t outbuffer[N];
 
-float32_t modarctan(float32_t x, float32_t y){
-	if (x > 0){
-		return (float32_t)atan(y/x);
-	} else if (x < 0 && y >= 0){
-		return ((float32_t)atan(y/x) + PI);
-	} else if (x < 0 && y < 0){
-		return ((float32_t)atan(y/x) - PI);
-	} else if (x ==0 && y > 0){
-		return (float32_t)PI/2;
-	} else if (x == 0 && y < 0){
-		return (float32_t)-PI/2;
-	} else {
-		return (float32_t)0;
-	}
+double modarctan(double x, double y){
+	double divide = x / y;
+	double X = 1/sqrt(1+ (divide * divide));
+	double result = atan2(x,y);
+	return result;
 }
 
 
@@ -130,23 +125,24 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
   for(i=0; i<DMA_BUFFER_SIZE ; i++)
   {
 		float32_t magL;
-		float32_t phaseL;
+		//float32_t phaseL;
 		float32_t magR;
-		float32_t phaseR;
+		double phaseR;
 		
-		double Lreal = (double)cbufL[i].real;
-		double Limag = (double)cbufL[i].imag;
-		double Rreal = (double)cbufR[i].real;
-		double Rimag = (double)cbufR[i].imag;
+		//double Lreal = (double)cbufL[i].real;
+		//double Limag = (double)cbufL[i].imag;
+		//double Rreal = (double)cbufR[i].real;
+		//double Rimag = (double)cbufR[i].imag;
 		
 		
 		magL = (float32_t)(sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )));
-		phaseL = (float32_t)modarctan(Limag, Lreal);// + 3.14159;
+		//phaseL = (float32_t)modarctan(Limag, Lreal);// + 3.14159;
 		//cbufLcross[i].real = magL * cos(phaseL);
 		//cbufLcross[i].imag = magL * sin(phaseL);
 				
 		magR = (float32_t)(sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )));
-		//phaseR = (float32_t)atan2(Rimag, Rreal);// + 3.14159;
+
+		phaseR = modarctan(20.0, 30.0);// + 3.14159;
 		//cbufRcross[i].real = magR * cos(phaseR);
 		//cbufRcross[i].imag = magR * sin(phaseR);
 		
@@ -195,8 +191,6 @@ int main (void) {    //Main function
     itwiddle[n].imag = (float32_t) (sin(PI*n/N));
   }	
 	
-
-
 	gpio_set_mode(P2_10,Output);
   audio_init ( hz48000, line_in, dma, DMA_HANDLER);
 
