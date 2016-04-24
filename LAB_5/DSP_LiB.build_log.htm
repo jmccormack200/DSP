@@ -3,12 +3,12 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.18.0.0
+IDE-Version: µVision V5.18a
 Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: John McCormack, Florida Polytechnic, LIC=----
+License Information: John McDad, Dad, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.18
+Toolchain:       MDK-Lite  Version: 5.18a
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 1 (build 61)
 Assembler:       Armasm.exe V5.06 update 1 (build 61)
@@ -17,20 +17,16 @@ Library Manager: ArmAr.exe V5.06 update 1 (build 61)
 Hex Converter:   FromElf.exe V5.06 update 1 (build 61)
 CPU DLL:         
 Dialog DLL:      DCM.DLL V1.13.6.0
-Target DLL:      UL2CM3.DLL V1.157.5.0
+Target DLL:      UL2CM3.DLL V1.157.10.0
 Dialog DLL:      TCM.DLL V1.14.8.0
  
 <h2>Project:</h2>
 C:\Users\John\Projects\DSP_Course\LAB_5\DSP_LiB.uvprojx
-Project File Date:  04/14/2016
+Project File Date:  04/24/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'LPC4088'
-compiling gpio.c...
-drivers\gpio.h(12): error:  #5: cannot open source input file "platform.h": No such file or directory
-  #include <platform.h>
-drivers\gpio.c: 0 warnings, 1 error
 compiling delay.c...
 drivers\delay.c(1): error:  #5: cannot open source input file "platform.h": No such file or directory
   #include <platform.h>
@@ -43,10 +39,14 @@ compiling audio.c...
 drivers\audio.c(13): error:  #5: cannot open source input file "gpio.h": No such file or directory
   #include <gpio.h>
 drivers\audio.c: 0 warnings, 1 error
-compiling i2c.c...
-compiling i2s.c...
-compiling dma.c...
+compiling gpio.c...
+drivers\gpio.h(12): error:  #5: cannot open source input file "platform.h": No such file or directory
+  #include <platform.h>
+drivers\gpio.c: 0 warnings, 1 error
 assembling startup_LPC407x_8x_177x_8x.s...
+compiling i2c.c...
+compiling dma.c...
+compiling i2s.c...
 compiling system_LPC407x_8x_177x_8x.c...
 ".\DSP_LiB.axf" - 4 Error(s), 0 Warning(s).
 
@@ -80,12 +80,12 @@ Package Vendor: Keil
       Library file:  CMSIS\Lib\ARM\arm_cortexM4lf_math.lib
 
    * Component: Keil::Device:Startup:1.0.1
+      Source file:   Device\Source\ARM\startup_LPC407x_8x_177x_8x.s
       Source file:   Device\Source\system_LPC407x_8x_177x_8x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
       Include file:  Device\Include\LPC407x_8x_177x_8x.h
-      Source file:   Device\Source\ARM\startup_LPC407x_8x_177x_8x.s
 Target not created.
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:04
 </pre>
 </body>
 </html>
