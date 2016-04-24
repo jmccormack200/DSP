@@ -1,0 +1,9 @@
+.\system_lpc407x_8x_177x_8x.o: RTE\Device\LPC4088FET208\system_LPC407x_8x_177x_8x.c
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h
+.\system_lpc407x_8x_177x_8x.o: C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\system_LPC407x_8x_177x_8x.h

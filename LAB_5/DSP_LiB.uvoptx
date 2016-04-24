@@ -28,7 +28,7 @@
     <TargetOption>
       <CLKADS>120000000</CLKADS>
       <OPTTT>
-        <gFlags>1</gFlags>
+        <gFlags>0</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>0</RunSim>
         <RunTarget>1</RunTarget>
@@ -45,7 +45,7 @@
         <PageWidth>79</PageWidth>
         <PageLength>66</PageLength>
         <TabStop>8</TabStop>
-        <ListingPath>.\lst\</ListingPath>
+        <ListingPath>.\</ListingPath>
       </OPTLEX>
       <ListingPage>
         <CreateCListing>1</CreateCListing>
@@ -100,7 +100,7 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <nTsel>12</nTsel>
+        <nTsel>1</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -111,38 +111,13 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>BIN\CMSIS_AGDI.dll</pMon>
+        <pMon>BIN\UL2CM3.DLL</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>ARMRTXEVENTFLAGS</Key>
-          <Name>-L70 -Z18 -C0 -M0 -T1</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>ARMDBGFLAGS</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>DLGUARM</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
-          <Key>CMSIS_AGDI</Key>
-          <Name>-X"MBED CMSIS-DAP" -U106002031FEBE28BE2170D13 -O206 -S3 -C0 -P00 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD10000000 -FCFE0 -FN1 -FF0LPC_IAP_512.flm -FS00 -FL080000 -FP0($$Device:LPC4088FET208$Flash\LPC_IAP_512.flm)</Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>-S0 -C0 -P0 -FD10000000 -FCFE0 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000 -FP0($$Device:LPC4088FET208$Flash\LPC_IAP_512.flm))</Name>
+          <Name>UL2CM3(-S0 -C0 -P0 -FD10000000 -FCFE0 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000 -FP0($$Device:LPC4088FET208$Flash\LPC_IAP_512.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint/>
@@ -279,6 +254,18 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\drivers\i2s.c</PathWithFileName>
       <FilenameWithoutPath>i2s.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>2</GroupNumber>
+      <FileNumber>8</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>C:\Keil_v5\ARM\ARMCC\include\math.h</PathWithFileName>
+      <FilenameWithoutPath>math.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -1,0 +1,11 @@
+.\gpio.o: drivers\gpio.c
+.\gpio.o: C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\LPC407x_8x_177x_8x.h
+.\gpio.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm4.h
+.\gpio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\gpio.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h
+.\gpio.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h
+.\gpio.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h
+.\gpio.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmSimd.h
+.\gpio.o: C:\Keil_v5\ARM\PACK\Keil\LPC4000_DFP\2.0.0\Device\Include\system_LPC407x_8x_177x_8x.h
+.\gpio.o: drivers\platform.h
+.\gpio.o: drivers\gpio.h

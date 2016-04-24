@@ -1,0 +1,1 @@
+-mthumb-interwork -o "./DSP_LiB.elf" "./loop_dma.o" "./audio.o" "./delay.o" "./dma.o" "./gpio.o" "./i2c.o" "./i2s.o" "C:/Keil_v5/ARM/PACK/ARM/CMSIS/4.5.0/CMSIS/Lib/GCC/libarm_cortexM4lf_math.a" "./startup_lpc407x_8x_177x_8x.o" "./system_lpc407x_8x_177x_8x.o" -nostartfiles -lm
