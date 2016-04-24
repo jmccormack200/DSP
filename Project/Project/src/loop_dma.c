@@ -14,6 +14,8 @@
 #include <math.h>
 #include <stdio.h>
 
+
+
 typedef struct
 {
   float32_t real;
@@ -125,36 +127,30 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 
   for(i=0; i<DMA_BUFFER_SIZE ; i++)
   {
-		float32_t magL;
-		//float32_t phaseL;
-		float32_t magR;
-		double phaseR;
-		
-		//double Lreal = (double)cbufL[i].real;
-		//double Limag = (double)cbufL[i].imag;
-		//double Rreal = (double)cbufR[i].real;
-		//double Rimag = (double)cbufR[i].imag;
-		
-		
-		magL = (float32_t)(sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )));
-		//phaseL = (float32_t)modarctan(Limag, Lreal);// + 3.14159;
-		//cbufLcross[i].real = magL * cos(phaseL);
-		//cbufLcross[i].imag = magL * sin(phaseL);
+		float magL;
+		float phaseL;
+		float magR;
+		float phaseR;
 				
-		magR = (float32_t)(sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )));
-
-		//phaseR = modarctan(20.0, 30.0);// + 3.14159;
-		//cbufRcross[i].real = magR * cos(phaseR);
-		//cbufRcross[i].imag = magR * sin(phaseR);
+		magL = (sqrtf((cbufL[i].real * cbufL[i].real) + (cbufL[i].imag * cbufL[i].imag ))) * 0.8;
+		phaseL = atan2f(cbufL[i].imag, cbufL[i].real) + PI;
+		cbufLcross[i].real = (float32_t)(magL * cosf(phaseL));
+		cbufLcross[i].imag = (float32_t)(magL * sinf(phaseL));
 		
-		//cbufL[i].real = cbufL[i].real + cbufRcross[i].real;
-		//cbufL[i].imag = cbufL[i].imag + cbufRcross[i].imag;
+				
+		magR = (sqrtf(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag ))) * 0.8;
+		phaseR = atan2f(cbufR[i].imag, cbufR[i].real) + PI;
+		cbufRcross[i].real = (float32_t)(magR * cosf(phaseR));
+		cbufRcross[i].imag = (float32_t)(magR * sinf(phaseR));
 		
-		//cbufR[i].real = cbufR[i].real + cbufLcross[i].real;
-		//cbufR[i].imag = cbufR[i].imag + cbufLcross[i].imag;	
+		cbufL[i].real = cbufL[i].real + cbufRcross[i].real;
+		cbufL[i].imag = cbufL[i].imag + cbufRcross[i].imag;
+		
+		cbufR[i].real = cbufR[i].real + cbufLcross[i].real;
+		cbufR[i].imag = cbufR[i].imag + cbufLcross[i].imag;	
 	}
 
-	
+	//remember to change below too!!!!!!
 	fft(cbufL, DMA_BUFFER_SIZE, itwiddle);
 	fft(cbufR, DMA_BUFFER_SIZE, itwiddle);
 	
@@ -191,6 +187,7 @@ int main (void) {    //Main function
     itwiddle[n].real = (float32_t) (cos(PI*n/N));
     itwiddle[n].imag = (float32_t) (sin(PI*n/N));
   }	
+	
 	
 	gpio_set_mode(P2_10,Output);
   audio_init ( hz48000, line_in, dma, DMA_HANDLER);
