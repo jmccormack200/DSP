@@ -28,6 +28,23 @@ COMPLEX cbufRcross[N];
 int16_t sinebuf[N];
 int16_t outbuffer[N];
 
+float32_t modarctan(float32_t x, float32_t y){
+	if (x > 0){
+		return (float32_t)atan(y/x);
+	} else if (x < 0 && y >= 0){
+		return ((float32_t)atan(y/x) + PI);
+	} else if (x < 0 && y < 0){
+		return ((float32_t)atan(y/x) - PI);
+	} else if (x ==0 && y > 0){
+		return (float32_t)PI/2;
+	} else if (x == 0 && y < 0){
+		return (float32_t)-PI/2;
+	} else {
+		return (float32_t)0;
+	}
+}
+
+
 void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 { 
 
@@ -106,39 +123,40 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 	
 	fft(cbufL, DMA_BUFFER_SIZE, twiddle);
 	fft(cbufR, DMA_BUFFER_SIZE, twiddle);
-	//fft(cbufL, DMA_BUFFER_SIZE, twiddle);
-	//fft(cbufR, DMA_BUFFER_SIZE, twiddle);
+
 
 	//process data here
-	
+
   for(i=0; i<DMA_BUFFER_SIZE ; i++)
   {
-		/*
-		int magL = (int16_t)((sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )))/MAGNITUDE_SCALING_FACTOR);
-		int magR = (int16_t)((sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )))/MAGNITUDE_SCALING_FACTOR);
+		float32_t magL;
+		float32_t phaseL;
+		float32_t magR;
+		float32_t phaseR;
 		
-		float phaseL = (float)atan2(cbufL[i].imag, cbufL[i].real) + 3.14159;
-		float phaseR = (float)atan2(cbufR[i].imag, cbufR[i].real) + 3.14159;
+		double Lreal = (double)cbufL[i].real;
+		double Limag = (double)cbufL[i].imag;
+		double Rreal = (double)cbufR[i].real;
+		double Rimag = (double)cbufR[i].imag;
 		
-		cbufLcross[i].real = magL * cos(phaseL);
-		cbufLcross[i].imag = magL * sin(phaseL);
-		cbufRcross[i].real = magR * cos(phaseR);
-		cbufRcross[i].imag = magR * sin(phaseR);
 		
-		cbufL[i].real = cbufL[i].real - cbufRcross[i].real;
-		cbufL[i].imag = cbufL[i].imag - cbufRcross[i].imag;
+		magL = (float32_t)(sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag )));
+		phaseL = (float32_t)modarctan(Limag, Lreal);// + 3.14159;
+		//cbufLcross[i].real = magL * cos(phaseL);
+		//cbufLcross[i].imag = magL * sin(phaseL);
+				
+		magR = (float32_t)(sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag )));
+		//phaseR = (float32_t)atan2(Rimag, Rreal);// + 3.14159;
+		//cbufRcross[i].real = magR * cos(phaseR);
+		//cbufRcross[i].imag = magR * sin(phaseR);
 		
-		cbufR[i].real = cbufR[i].real - cbufLcross[i].real;
-		cbufR[i].imag = cbufR[i].imag - cbufLcross[i].imag;		
-		*/
+		//cbufL[i].real = cbufL[i].real + cbufRcross[i].real;
+		//cbufL[i].imag = cbufL[i].imag + cbufRcross[i].imag;
 		
-		/*
-		cbufL[i].real = cbufL[i].real / DMA_BUFFER_SIZE;
-		cbufL[i].imag = cbufL[i].imag / DMA_BUFFER_SIZE;
-		cbufR[i].real = cbufR[i].real / DMA_BUFFER_SIZE;
-		cbufR[i].imag = cbufR[i].imag / DMA_BUFFER_SIZE;
-		*/
+		//cbufR[i].real = cbufR[i].real + cbufLcross[i].real;
+		//cbufR[i].imag = cbufR[i].imag + cbufLcross[i].imag;	
 	}
+
 	
 	fft(cbufL, DMA_BUFFER_SIZE, itwiddle);
 	fft(cbufR, DMA_BUFFER_SIZE, itwiddle);
@@ -160,6 +178,7 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 	tx_buffer_empty = 0;
   rx_buffer_full = 0;
 	}
+
 
 int main (void) {    //Main function
 	
