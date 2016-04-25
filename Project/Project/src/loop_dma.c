@@ -105,12 +105,12 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
   {
 	audio_IN =   rxbuf[i];	
 	audio_chL = (uint16_t)(audio_IN & 0x0000FFFF); 
-    cbufL[i].real = (float)audio_chL; // hamming[i];
+    cbufL[i].real = (float)audio_chL; // * hamming[i];
     cbufL[i].imag = 0.0f;
     sinebuf[i] = audio_chL;
 		
 	audio_chR = (uint16_t)((audio_IN & 0xFFFF0000) >> 16);
-		cbufR[i].real = (float)audio_chR; // hamming[i];
+		cbufR[i].real = (float)audio_chR; // * hamming[i];
     cbufR[i].imag = 0.0f;
 		
 		//txbuf[i] = rxbuf[i];
@@ -131,23 +131,39 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		float phaseL;
 		float magR;
 		float phaseR;
-				
-		magL = (sqrtf((cbufL[i].real * cbufL[i].real) + (cbufL[i].imag * cbufL[i].imag ))) * 0.8;
+		
+		/*
+			These settings adjust the effects you hear. To get a karaoke style sound, set the ''adjust'' parameter to 1. 
+			To hear a deeply wide circuit I recommend adjust at 0.8 and upgain set to 16.0f. For a subtle wide sound,
+			like the kind you would want to hear in a final product, I recommend an adjust value of 0.8 and an
+			upgain value of 4.0f. 
+		*/
+		
+		// Set to 1.0f for karaoke mode, 0.8f works better for wide effect.
+		float adjust = 0.80f; 
+		//Increase upgain to increase the wide effect, it also makes the general audio louder so we
+		// use downgain to adjust the volume lower. 
+		float upgain = 4.0f;
+		float downgain = upgain * 16.0f; 
+		
+		magL = (sqrtf((cbufL[i].real * cbufL[i].real) + (cbufL[i].imag * cbufL[i].imag ))) * adjust;
 		phaseL = atan2f(cbufL[i].imag, cbufL[i].real) + PI;
 		cbufLcross[i].real = (float32_t)(magL * cosf(phaseL));
 		cbufLcross[i].imag = (float32_t)(magL * sinf(phaseL));
 		
 				
-		magR = (sqrtf(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag ))) * 0.8;
+		magR = (sqrtf(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag ))) * adjust;
 		phaseR = atan2f(cbufR[i].imag, cbufR[i].real) + PI;
 		cbufRcross[i].real = (float32_t)(magR * cosf(phaseR));
 		cbufRcross[i].imag = (float32_t)(magR * sinf(phaseR));
 		
-		cbufL[i].real = cbufL[i].real + cbufRcross[i].real;
-		cbufL[i].imag = cbufL[i].imag + cbufRcross[i].imag;
 		
-		cbufR[i].real = cbufR[i].real + cbufLcross[i].real;
-		cbufR[i].imag = cbufR[i].imag + cbufLcross[i].imag;	
+		//Remove the first instance of each cbuf to create a karaoke effect. 
+		cbufL[i].real = (cbufL[i].real + ((cbufL[i].real + cbufRcross[i].real))*upgain)/downgain;
+		cbufL[i].imag = (cbufL[i].imag + ((cbufL[i].imag + cbufRcross[i].imag))*upgain)/downgain;
+		
+		cbufR[i].real = (cbufR[i].real + ((cbufR[i].real + cbufLcross[i].real))*upgain)/downgain;
+		cbufR[i].imag = (cbufR[i].imag + ((cbufR[i].imag + cbufLcross[i].imag))*upgain)/downgain;	
 	}
 
 	//remember to change below too!!!!!!
@@ -165,7 +181,8 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		
     //if (i==0) {audio_chL = TRIGGER;}
 		
-		txbuf[i]= (-(audio_chR<<16 & 0xFFFF0000) + (-(audio_chL) & 0x0000FFFF));	
+		//txbuf[i]= (-(audio_chR<<16 & 0xFFFF0000) + (-(audio_chL) & 0x0000FFFF));	
+		txbuf[i]= (-(audio_chL<<16 & 0xFFFF0000) + (-(audio_chR) & 0x0000FFFF));
   }
 
 	tx_buffer_empty = 0;

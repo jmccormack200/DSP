@@ -11,12 +11,12 @@ Section Cross References
     loop_dma.o(.text) refers to atan2.o(i.__hardfp_atan2) for __hardfp_atan2
     loop_dma.o(.text) refers to dma.o(.text) for dma_state
     loop_dma.o(.text) refers to sqrtf.o(i.__hardfp_sqrtf) for __hardfp_sqrtf
-    loop_dma.o(.text) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
-    loop_dma.o(.text) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
     loop_dma.o(.text) refers to atan2f.o(i.__hardfp_atan2f) for __hardfp_atan2f
     loop_dma.o(.text) refers to cosf.o(i.__hardfp_cosf) for __hardfp_cosf
     loop_dma.o(.text) refers to sinf.o(i.__hardfp_sinf) for __hardfp_sinf
+    loop_dma.o(.text) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
     loop_dma.o(.text) refers to cos.o(i.__hardfp_cos) for __hardfp_cos
+    loop_dma.o(.text) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
     loop_dma.o(.text) refers to sin.o(i.__hardfp_sin) for __hardfp_sin
     loop_dma.o(.text) refers to gpio.o(.text) for gpio_set_mode
     loop_dma.o(.text) refers to audio.o(.text) for audio_init
@@ -1239,12 +1239,12 @@ Image component sizes
        248         20          0          0          0       3649   gpio.o
        192         14          0          0          0       2452   i2c.o
        448         22          0          4          0       3722   i2s.o
-      1364         74          0         20       8448      45858   loop_dma.o
+      1364         74          0         20       8448      45902   loop_dma.o
         64         26        228          0       1024       1116   startup_lpc407x_8x_177x_8x.o
        544         30          0         16          0       3612   system_lpc407x_8x_177x_8x.o
 
     ----------------------------------------------------------------------
-      3976        252        260        180      10496     125551   Object Totals
+      3976        252        260        180      10496     125595   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -1332,8 +1332,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     13028       1192        740        180      10596     126459   Grand Totals
-     13028       1192        740        180      10596     126459   ELF Image Totals
+     13028       1192        740        180      10596     126503   Grand Totals
+     13028       1192        740        180      10596     126503   ELF Image Totals
      13028       1192        740        180          0          0   ROM Totals
 
 ==============================================================================
