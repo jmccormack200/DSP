@@ -131,6 +131,7 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		float phaseL;
 		float magR;
 		float phaseR;
+		int noVocal = 0; //0 for vocals, 1 for no vocals;
 		
 		/*
 			These settings adjust the effects you hear. To get a karaoke style sound, set the ''adjust'' parameter to 1. 
@@ -140,11 +141,21 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		*/
 		
 		// Set to 1.0f for karaoke mode, 0.8f works better for wide effect.
-		float adjust = 0.80f; 
+		float adjust;
 		//Increase upgain to increase the wide effect, it also makes the general audio louder so we
 		// use downgain to adjust the volume lower. 
-		float upgain = 4.0f;
-		float downgain = upgain * 16.0f; 
+		float upgain;
+		float downgain;
+		
+		if (noVocal == 0){
+			adjust = 0.8f;
+			upgain = 16.0f;
+		} else {
+			adjust = 1.0f;
+			upgain = 4.0f;
+		}
+		
+		downgain = upgain * 16.0f;
 		
 		magL = (sqrtf((cbufL[i].real * cbufL[i].real) + (cbufL[i].imag * cbufL[i].imag ))) * adjust;
 		phaseL = atan2f(cbufL[i].imag, cbufL[i].real) + PI;
