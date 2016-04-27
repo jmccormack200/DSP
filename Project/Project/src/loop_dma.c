@@ -130,13 +130,14 @@ void proces_buffer(void)
 		float phaseL;
 		float magR;
 		float phaseR;
-		int noVocal = 0; //0 for vocals, 1 for no vocals;
+		int noVocal = 1; //0 for vocals, 1 for no vocals;
+		int fullWide = 0; //1 for full wide, 0 for subtle. noVocal must be set to 0.
 		
 		/*
 			These settings adjust the effects you hear. To get a karaoke style sound, set the ''adjust'' parameter to 1. 
 			To hear a deeply wide circuit I recommend adjust at 0.8 and upgain set to 16.0f. For a subtle wide sound,
 			like the kind you would want to hear in a final product, I recommend an adjust value of 0.8 and an
-			upgain value of 4.0f. 
+			upgain value of 1.0f~2.0f. 
 		*/
 		
 		// Set to 1.0f for karaoke mode, 0.8f works better for wide effect.
@@ -146,12 +147,16 @@ void proces_buffer(void)
 		float upgain;
 		float downgain;
 		
-		if (noVocal == 0){
-			adjust = 0.8f;
+		if (fullWide == 0){
 			upgain = 16.0f;
 		} else {
+			upgain = 1.0f;
+		}
+		
+		if (noVocal == 1){
 			adjust = 1.0f;
-			upgain = 4.0f;
+		} else {
+			adjust = 0.8f;
 		}
 		
 		downgain = upgain * 16.0f;
@@ -173,11 +178,20 @@ void proces_buffer(void)
 		// We add the out of phase of R to in phase of L, then add this to the original L. This emphasis whatever is not 
 		// found in the center channel. We then repeat this process for R. 
 		//Remove the first instance of each cbuf to create a deeper karaoke effect. 
-		cbufL[i].real = (cbufL[i].real + ((cbufL[i].real + cbufRcross[i].real))*upgain)/downgain;
-		cbufL[i].imag = (cbufL[i].imag + ((cbufL[i].imag + cbufRcross[i].imag))*upgain)/downgain;
 		
-		cbufR[i].real = (cbufR[i].real + ((cbufR[i].real + cbufLcross[i].real))*upgain)/downgain;
-		cbufR[i].imag = (cbufR[i].imag + ((cbufR[i].imag + cbufLcross[i].imag))*upgain)/downgain;	
+		if (noVocal == 0){
+			cbufL[i].real = (cbufL[i].real + ((cbufL[i].real + cbufRcross[i].real))*upgain)/downgain;
+			cbufL[i].imag = (cbufL[i].imag + ((cbufL[i].imag + cbufRcross[i].imag))*upgain)/downgain;
+			
+			cbufR[i].real = (cbufR[i].real + ((cbufR[i].real + cbufLcross[i].real))*upgain)/downgain;
+			cbufR[i].imag = (cbufR[i].imag + ((cbufR[i].imag + cbufLcross[i].imag))*upgain)/downgain;	
+		} else {
+			cbufL[i].real = (cbufL[i].real + cbufRcross[i].real)/16.0f;
+			cbufL[i].imag = (cbufL[i].imag + cbufRcross[i].imag)/16.0f;
+			
+			cbufR[i].real = (cbufR[i].real + cbufLcross[i].real)/16.0f;
+			cbufR[i].imag = (cbufR[i].imag + cbufLcross[i].imag)/16.0f;	
+		}
 	}
 	
 	// We then take the inverse FFT
