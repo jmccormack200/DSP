@@ -25,24 +25,20 @@ typedef struct
 #include "fft.h"
 
 
-
+// twiddle is used for the fft,
 COMPLEX twiddle[N];
+// itwiddle is used for the ifft
 COMPLEX itwiddle[N];
+// we setup buffers for the L and R audio
 COMPLEX cbufL[N];
 COMPLEX cbufR[N];
+//the cross buffers are used to add the channels
 COMPLEX cbufLcross[N];
 COMPLEX cbufRcross[N];
-int16_t sinebuf[N];
-int16_t outbuffer[N];
-
-double modarctan(double x, double y){
-	double divide = x / y;
-	double X = 1/sqrt(1+ (divide * divide));
-	double result = atan2(x,y);
-	return result;
-}
 
 
+
+// This DMA Handler is provided by the labs
 void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 { 
 
@@ -87,8 +83,9 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 				dma_enable(1);		
     }
 	}
-	
-	void proces_buffer(void) 
+
+// This is the main loop where we process data	
+void proces_buffer(void) 
 {
  int i;
 
@@ -101,13 +98,15 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
   if(rx_proc_buffer == PING) rxbuf = dma_rx_buffer_ping; 
   else rxbuf = dma_rx_buffer_pong; 
 	
+	// First we separate audio_IN into the L and R Audio
+	// We do this by anding the audio_IN with a bit mask.
   for(i=0; i<DMA_BUFFER_SIZE ; i++)
   {
 	audio_IN =   rxbuf[i];	
 	audio_chL = (uint16_t)(audio_IN & 0x0000FFFF); 
+		//We divide into real and imaginary for the fft, but there is not an imaginary component yet
     cbufL[i].real = (float)audio_chL; // * hamming[i];
     cbufL[i].imag = 0.0f;
-    sinebuf[i] = audio_chL;
 		
 	audio_chR = (uint16_t)((audio_IN & 0xFFFF0000) >> 16);
 		cbufR[i].real = (float)audio_chR; // * hamming[i];
@@ -118,7 +117,7 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
   }
 	
 	
-	
+	//We fft each channel
 	fft(cbufL, DMA_BUFFER_SIZE, twiddle);
 	fft(cbufR, DMA_BUFFER_SIZE, twiddle);
 
@@ -157,6 +156,9 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		
 		downgain = upgain * 16.0f;
 		
+		// we change the real and imaginary into polar and shift the polar by pi
+		// Then we convert back to rectangular. 
+		// We do this separately for each channel. 
 		magL = (sqrtf((cbufL[i].real * cbufL[i].real) + (cbufL[i].imag * cbufL[i].imag ))) * adjust;
 		phaseL = atan2f(cbufL[i].imag, cbufL[i].real) + PI;
 		cbufLcross[i].real = (float32_t)(magL * cosf(phaseL));
@@ -168,31 +170,30 @@ void DMA_HANDLER (void)  /****** DMA Interruption Handler*****/
 		cbufRcross[i].real = (float32_t)(magR * cosf(phaseR));
 		cbufRcross[i].imag = (float32_t)(magR * sinf(phaseR));
 		
-		
-		//Remove the first instance of each cbuf to create a karaoke effect. 
+		// We add the out of phase of R to in phase of L, then add this to the original L. This emphasis whatever is not 
+		// found in the center channel. We then repeat this process for R. 
+		//Remove the first instance of each cbuf to create a deeper karaoke effect. 
 		cbufL[i].real = (cbufL[i].real + ((cbufL[i].real + cbufRcross[i].real))*upgain)/downgain;
 		cbufL[i].imag = (cbufL[i].imag + ((cbufL[i].imag + cbufRcross[i].imag))*upgain)/downgain;
 		
 		cbufR[i].real = (cbufR[i].real + ((cbufR[i].real + cbufLcross[i].real))*upgain)/downgain;
 		cbufR[i].imag = (cbufR[i].imag + ((cbufR[i].imag + cbufLcross[i].imag))*upgain)/downgain;	
 	}
-
+	
+	// We then take the inverse FFT
 	//remember to change below too!!!!!!
 	fft(cbufL, DMA_BUFFER_SIZE, itwiddle);
 	fft(cbufR, DMA_BUFFER_SIZE, itwiddle);
 	
 	for(i=0; i<DMA_BUFFER_SIZE; i++)
 	{
-				
-		//audio_chL = (int16_t)(sqrt(cbufL[i].real * cbufL[i].real + (cbufL[i].imag * cbufL[i].imag ))); ///MAGNITUDE_SCALING_FACTOR);
-		//audio_chR = (int16_t)(sqrt(cbufR[i].real * cbufR[i].real + (cbufR[i].imag * cbufR[i].imag ))); ///MAGNITUDE_SCALING_FACTOR);
-	
+		//After the fft we should only have a real component so that is all we will output. 
 		audio_chL = (int16_t)(cbufL[i].real);
 		audio_chR = (int16_t)(cbufR[i].real);
 		
-    //if (i==0) {audio_chL = TRIGGER;}
 		
-		//txbuf[i]= (-(audio_chR<<16 & 0xFFFF0000) + (-(audio_chL) & 0x0000FFFF));	
+		// We fill the txbuf with the L and R audio. The channels must be shifted and masked to be
+		// heard properly. 
 		txbuf[i]= (-(audio_chL<<16 & 0xFFFF0000) + (-(audio_chR) & 0x0000FFFF));
   }
 
